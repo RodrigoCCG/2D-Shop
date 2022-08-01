@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: BlackShoesScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 4907373327837967287, guid: b004a1d09e3b26a44b44fedc70cc8fdf, type: 3}
+  WorldObject: {fileID: 3447237690003988653, guid: 08cccb3b493153f44b142e5f728da882, type: 3}
+  clothingType: 2
+  moneyValue: 0
+  itemDescription: Black shoes

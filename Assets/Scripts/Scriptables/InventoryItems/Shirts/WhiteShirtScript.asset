@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: WhiteShirtScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 3920388948891680208, guid: e0aeee075bd1b784a8d8d06b5d55fd64, type: 3}
+  WorldObject: {fileID: 178682858287163065, guid: 4e576023c784ea54da9ae75b563cbfd0, type: 3}
+  clothingType: 0
+  moneyValue: 2
+  itemDescription: White shirt
