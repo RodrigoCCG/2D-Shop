@@ -104,6 +104,7 @@ public class InventoryGridManager : MonoBehaviour
     //Menu navigation
     IEnumerator InventoryControl(){
         highlightPos = new Vector2(0,0);
+        highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
         while(UIMaster._instance.IsAMenuOpen){
             int horizontalInput = 0;
             if(Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Horizontal") > 0.1f){
