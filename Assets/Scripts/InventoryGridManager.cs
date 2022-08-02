@@ -23,18 +23,12 @@ public class InventoryGridManager : MonoBehaviour
     private GameObject highlight;
     private Vector2 highlightPos;
     private bool isInventoryLoaded;
+    private bool showPlayerEquipped = false;
     private Dictionary<Vector2, TileControl> TileDict = new Dictionary<Vector2, TileControl>();
     [SerializeField] List<InventoryItemScriptable> itemsInInventory = new List<InventoryItemScriptable>();
 
-    //Equiped Shirt
-    [SerializeField] InventoryItemScriptable shirtItem;
-    public InventoryItemScriptable ShirtItem{get{return shirtItem;}}
-    //Equiped pants
-    [SerializeField] InventoryItemScriptable pantsItem;
-    public InventoryItemScriptable PantsItem{get{return pantsItem;}}
-    //Equiped shoes
-    [SerializeField] InventoryItemScriptable shoesItem;
-    public InventoryItemScriptable ShoesItem{get{return shoesItem;}}
+    private PlayerClothingSystem playerClothes;
+    private PlayerControl playerControl;
 
 
 
@@ -55,21 +49,28 @@ public class InventoryGridManager : MonoBehaviour
                 TileDict[new Vector2(i,j)].Init();
             }
         }
+        playerClothes = playerGO.GetComponent<PlayerClothingSystem>();
+        playerControl = playerGO.GetComponent<PlayerControl>();
         highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
         isInventoryLoaded = false;
-        if(!itemsInInventory.Contains(shirtItem)) itemsInInventory.Add(shirtItem);
-        if(!itemsInInventory.Contains(pantsItem)) itemsInInventory.Add(pantsItem);
-        if(!itemsInInventory.Contains(shoesItem)) itemsInInventory.Add(shoesItem);
+        //Failsafe if Worn clothes are not in the inventory
+        if(!playerClothes.ItemsInInventory.Contains(playerClothes.ShirtItem)) playerClothes.ItemsInInventory.Add(playerClothes.ShirtItem);
+        if(!playerClothes.ItemsInInventory.Contains(playerClothes.PantsItem)) playerClothes.ItemsInInventory.Add(playerClothes.PantsItem);
+        if(!playerClothes.ItemsInInventory.Contains(playerClothes.ShoesItem)) playerClothes.ItemsInInventory.Add(playerClothes.ShoesItem);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(UIMaster._instance.IsAMenuOpen && !isInventoryLoaded){
-            Debug.Log("OpenInventory");
-            LoadInventory(0);
-            StartCoroutine(InventoryControl());
-        }
+    public void OpenPlayerInventory(){
+        itemsInInventory = playerClothes.ItemsInInventory;
+        showPlayerEquipped = true;
+        LoadInventory(0);
+        StartCoroutine(InventoryControl());
+    }
+
+    public void OpenInventory(List<InventoryItemScriptable> inventoryToDisplay){
+        itemsInInventory = inventoryToDisplay;
+        showPlayerEquipped = false;
+        LoadInventory(0);
+        StartCoroutine(InventoryControl());
     }
 
     //Load the items into the tiles in the inventory
@@ -77,15 +78,29 @@ public class InventoryGridManager : MonoBehaviour
         int endIndex = start+21 < itemsInInventory.Count ? start+21 : itemsInInventory.Count;
         List<InventoryItemScriptable> displayedInventory = itemsInInventory.GetRange(start, endIndex);
         TileControl tileToFill = TileDict[new Vector2(0,0)];
-        tileToFill.SetNewContents(shirtItem.InventorySprite.GetComponent<Image>(),shirtItem);
-        tileToFill = TileDict[new Vector2(0,1)];
-        tileToFill.SetNewContents(pantsItem.InventorySprite.GetComponent<Image>(),pantsItem);
-        tileToFill = TileDict[new Vector2(0,2)];
-        tileToFill.SetNewContents(shoesItem.InventorySprite.GetComponent<Image>(),shoesItem);
         int rowIndex = 0;
-        int columnIndex = 3;
+        int columnIndex = 0;
+        for(rowIndex = 0; rowIndex < gridHeight; rowIndex++){
+            for(columnIndex = 0; columnIndex < gridWidth; columnIndex++){
+                tileToFill = TileDict[new Vector2(rowIndex,columnIndex)];
+                tileToFill.EmptyTileContents();
+            }
+        }
+        if(showPlayerEquipped){
+            tileToFill = TileDict[new Vector2(0,0)];
+            tileToFill.SetNewContents(playerClothes.ShirtItem.InventorySprite.GetComponent<Image>(),playerClothes.ShirtItem);
+            tileToFill = TileDict[new Vector2(0,1)];
+            tileToFill.SetNewContents(playerClothes.PantsItem.InventorySprite.GetComponent<Image>(),playerClothes.PantsItem);
+            tileToFill = TileDict[new Vector2(0,2)];
+            tileToFill.SetNewContents(playerClothes.ShoesItem.InventorySprite.GetComponent<Image>(),playerClothes.ShoesItem);
+            rowIndex = 0;
+            columnIndex = 3;
+        }else{
+            rowIndex = 0;
+            columnIndex = 0;
+        }
         foreach(InventoryItemScriptable item in displayedInventory){
-            if(item != shirtItem && item != pantsItem && item != shoesItem){
+            if(item != playerClothes.ShirtItem && item != playerClothes.PantsItem && item != playerClothes.ShoesItem){
                 tileToFill = TileDict[new Vector2(rowIndex,columnIndex)];
                 tileToFill.SetNewContents(item.InventorySprite.GetComponent<Image>(),item);
                 columnIndex++;
@@ -105,6 +120,10 @@ public class InventoryGridManager : MonoBehaviour
     IEnumerator InventoryControl(){
         highlightPos = new Vector2(0,0);
         highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
+        while(UIMaster._instance.IsATextBoxOpen){
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.15f);
         while(UIMaster._instance.IsAMenuOpen){
             int horizontalInput = 0;
             if(Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Horizontal") > 0.1f){
@@ -120,32 +139,34 @@ public class InventoryGridManager : MonoBehaviour
                     verticalInput = 0;
                 }
             }
-            if(verticalInput != 0 || horizontalInput !=0){
-                highlightPos += new Vector2(verticalInput, horizontalInput);
-                highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
-                yield return new WaitForSeconds(0.15f);
-            }else{
-                if(Input.GetKey("z")){
-                    InventoryItemScriptable itemToWear = TileDict[highlightPos].Contents;
-                    if(itemToWear != null){
-                        if(itemToWear.ClothingType == 0){
-                            SwapShirt(itemToWear);
-                        }
-                        if(itemToWear.ClothingType == 1){
-                            SwapPants(itemToWear);
-                        }
-                        if(itemToWear.ClothingType == 2){
-                            SwapShoes(itemToWear);
-                        }
-                    }
-                    LoadInventory(0);
+            if(!UIMaster._instance.IsATextBoxOpen){
+                if(verticalInput != 0 || horizontalInput !=0){
+                    highlightPos += new Vector2(verticalInput, horizontalInput);
+                    highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
                     yield return new WaitForSeconds(0.15f);
-                }
-            }            
+                }else{
+                    if(Input.GetKey("z")){
+                        InventoryItemScriptable itemToWear = TileDict[highlightPos].Contents;
+                        if(itemToWear != null){
+                            if(itemToWear.ClothingType == 0){
+                                playerClothes.SwapShirt(itemToWear);
+                            }
+                            if(itemToWear.ClothingType == 1){
+                                playerClothes.SwapPants(itemToWear);
+                            }
+                            if(itemToWear.ClothingType == 2){
+                                playerClothes.SwapShoes(itemToWear);
+                            }
+                        }
+                        LoadInventory(0);
+                        yield return new WaitForSeconds(0.15f);
+                    }
+                } 
+            }       
             yield return new WaitForEndOfFrame();
         }
     }
-
+    /*
     //Change equiped shirt
     void SwapShirt(InventoryItemScriptable itemToWear){
         if(shirtItem != itemToWear){
@@ -172,7 +193,7 @@ public class InventoryGridManager : MonoBehaviour
             playerGO.GetComponent<PlayerClothingSystem>().UpdateClothingSprites(this);
         }
     }
-
+    */
     private void OnDisable() {
         isInventoryLoaded = false;
     }

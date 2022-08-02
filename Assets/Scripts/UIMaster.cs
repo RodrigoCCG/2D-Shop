@@ -11,10 +11,12 @@ public class UIMaster : MonoBehaviour
     //Storage of UI elements for Display
     [SerializeField] GameObject dialogueBox;
     [SerializeField] GameObject inventoryDisplay;
+    [SerializeField] GameObject inventoryManager;
 
-    private bool isAMenuOpen;
+    [SerializeField] bool isAMenuOpen;
     public bool IsAMenuOpen {get{return isAMenuOpen;}}
-    private bool isATextBoxOpen;
+    [SerializeField] bool isATextBoxOpen;
+    public bool IsATextBoxOpen {get{return isATextBoxOpen;}}
 
     //Storage of camera instance
     [SerializeField] GameObject cameraGO;
@@ -30,9 +32,10 @@ public class UIMaster : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        CloseInventory();
+        ClosePlayerInventory();
         isAMenuOpen = false;
         isATextBoxOpen = false;
+        dialogueBox.SetActive(false);
     }
 
     //Start Text scroll routine
@@ -67,8 +70,7 @@ public class UIMaster : MonoBehaviour
             }
         }
         isATextBoxOpen = false;
-        player.EnablePlayerMovement();
-        dialogueBox.gameObject.SetActive(false);
+        dialogueBox.SetActive(false);
         yield return null;
     }
 
@@ -81,14 +83,25 @@ public class UIMaster : MonoBehaviour
     }
 
     //Function to open inventory, change camera position and zoom in
-    public void OpenInventory(){
+    public void OpenTargetInventory(PlayerControl player, List<InventoryItemScriptable> inventoryToDisplay){
         isAMenuOpen = true;
         inventoryDisplay.SetActive(true);
         cameraGO.GetComponent<CameraBehavior>().SetNewCameraOffsetAndZoom(Vector3.right * 2.5f, 2);
+        StartCoroutine(WaitForActions(player));
+        inventoryManager.GetComponent<InventoryGridManager>().OpenInventory(inventoryToDisplay);
+    }
+
+    //Function to open inventory, change camera position and zoom in
+    public void OpenPlayerInventory(PlayerControl player){
+        isAMenuOpen = true;
+        inventoryDisplay.SetActive(true);
+        cameraGO.GetComponent<CameraBehavior>().SetNewCameraOffsetAndZoom(Vector3.right * 2.5f, 2);
+        StartCoroutine(WaitForActions(player));
+        inventoryManager.GetComponent<InventoryGridManager>().OpenPlayerInventory();
     }
 
     //Function to close inventory, change camera position and zoom out
-    public void CloseInventory(){
+    public void ClosePlayerInventory(){
         isAMenuOpen = false;
         inventoryDisplay.SetActive(false);
         cameraGO.GetComponent<CameraBehavior>().SetNewCameraOffsetAndZoom(new Vector3(0,0,0), 5);

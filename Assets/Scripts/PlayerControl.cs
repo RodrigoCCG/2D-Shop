@@ -8,17 +8,20 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float moveSpeed;
 
     [SerializeField] bool isInteracting;
-    [SerializeField] bool menuOpen;
+    //[SerializeField] bool menuOpen;
 
     //Substitute for player settings later
     [SerializeField] string inputKey;
     [SerializeField] string menuKey;
 
     [SerializeField] public string InputKey {get{return inputKey;}}
-    [SerializeField] public bool MenuOpen {get{return menuOpen;}}
+    //[SerializeField] public bool MenuOpen {get{return menuOpen;}}
 
     //Holder for Interaction
     private GameObject objectInteraction;
+
+    //InventoryGridManager Reference
+    private InventoryGridManager inventoryGrid;
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +34,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate(){
         //Move player according to directional inputs
-        if(!isInteracting && !menuOpen){
+        if(!isInteracting && !UIMaster._instance.IsAMenuOpen){
             transform.Translate(new Vector3(Input.GetAxis("Horizontal") * moveSpeed, Input.GetAxis("Vertical") * moveSpeed,0));
         }
     }
 
     private void Update(){
         //Interaction System
-        if(Input.GetKeyDown(inputKey) && !isInteracting){
+        if(Input.GetKeyDown(inputKey) && !isInteracting && !UIMaster._instance.IsATextBoxOpen && !UIMaster._instance.IsAMenuOpen){
             if(objectInteraction != null){
                 InteractWithObject();
             }else{
@@ -46,13 +49,13 @@ public class PlayerControl : MonoBehaviour
             }
         }
         //Opening Menu System
-        if(Input.GetKeyDown(menuKey) && !isInteracting){
-            if(menuOpen){
-                menuOpen = false;
-                UIMaster._instance.CloseInventory();
+        if(Input.GetKeyDown(menuKey) && !UIMaster._instance.IsATextBoxOpen){
+            if(UIMaster._instance.IsAMenuOpen){
+                //menuOpen = false;
+                UIMaster._instance.ClosePlayerInventory();
             }else{
-                menuOpen = true;
-                UIMaster._instance.OpenInventory();
+                //menuOpen = true;
+                UIMaster._instance.OpenPlayerInventory(this);
             }
         }
     }

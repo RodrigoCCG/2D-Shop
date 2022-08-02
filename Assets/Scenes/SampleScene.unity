@@ -400,9 +400,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6c861bd18e6b654ea64412b05522a57, type: 2}
   - {fileID: 11400000, guid: 903e01754c5a2e64bb36483221a6ec9b, type: 2}
   - {fileID: 11400000, guid: bc08aedbcaa87aa4aa1d49929ea021a5, type: 2}
-  shirtItem: {fileID: 11400000, guid: 3ebff07f4c8ae974796992f3774d5c9c, type: 2}
-  pantsItem: {fileID: 11400000, guid: 23f5e94c10d7c22418ab8bfdab94bb42, type: 2}
-  shoesItem: {fileID: 11400000, guid: d6c861bd18e6b654ea64412b05522a57, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,9 +1493,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2088448228}
   - component: {fileID: 2088448227}
-  - component: {fileID: 2088448226}
   - component: {fileID: 2088448229}
   - component: {fileID: 2088448230}
+  - component: {fileID: 2088448226}
   - component: {fileID: 2088448231}
   m_Layer: 0
   m_Name: Player
@@ -1655,6 +1652,19 @@ MonoBehaviour:
   playerShirt: {fileID: 1712758032}
   playerPants: {fileID: 1637275238}
   playerShoes: {fileID: 598309578}
+  shirtItem: {fileID: 11400000, guid: 3ebff07f4c8ae974796992f3774d5c9c, type: 2}
+  pantsItem: {fileID: 11400000, guid: 23f5e94c10d7c22418ab8bfdab94bb42, type: 2}
+  shoesItem: {fileID: 11400000, guid: d6c861bd18e6b654ea64412b05522a57, type: 2}
+  itemsInInventory:
+  - {fileID: 11400000, guid: 28733c569fc276e428fdd21acd02650c, type: 2}
+  - {fileID: 11400000, guid: 23f5e94c10d7c22418ab8bfdab94bb42, type: 2}
+  - {fileID: 11400000, guid: 345353155774cf045936359894296204, type: 2}
+  - {fileID: 11400000, guid: beba1b6c6b2ee0a4b8af04a4982df502, type: 2}
+  - {fileID: 11400000, guid: 3ebff07f4c8ae974796992f3774d5c9c, type: 2}
+  - {fileID: 11400000, guid: b7e26293f031871469f6acb7b6bc2d3f, type: 2}
+  - {fileID: 11400000, guid: d6c861bd18e6b654ea64412b05522a57, type: 2}
+  - {fileID: 11400000, guid: 903e01754c5a2e64bb36483221a6ec9b, type: 2}
+  - {fileID: 11400000, guid: bc08aedbcaa87aa4aa1d49929ea021a5, type: 2}
 --- !u!1 &2141175789
 GameObject:
   m_ObjectHideFlags: 0
