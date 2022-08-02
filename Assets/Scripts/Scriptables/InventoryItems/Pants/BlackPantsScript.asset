@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 9100234267394150888, guid: 94254383259d48f4aa034d322a2d60a9, type: 3}
   clothingType: 1
   moneyValue: 0
-  itemDescription: Black Pants
+  itemDescription:
+  - A Black Pair of Pants

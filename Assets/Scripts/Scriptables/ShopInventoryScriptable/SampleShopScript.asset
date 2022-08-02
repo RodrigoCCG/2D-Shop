@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee867c0f194520b4c97d377d98fd5746, type: 3}
   m_Name: SampleShopScript
   m_EditorClassIdentifier: 
-  shopInventoryItems: []
+  shopInventoryItems:
+  - {fileID: 11400000, guid: 28733c569fc276e428fdd21acd02650c, type: 2}
+  - {fileID: 11400000, guid: beba1b6c6b2ee0a4b8af04a4982df502, type: 2}
+  - {fileID: 11400000, guid: d6c861bd18e6b654ea64412b05522a57, type: 2}

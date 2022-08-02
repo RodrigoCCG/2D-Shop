@@ -24,12 +24,16 @@ public class InventoryGridManager : MonoBehaviour
     private Vector2 highlightPos;
     private bool isInventoryLoaded;
     private bool showPlayerEquipped = false;
+
+    [SerializeField] bool isInShop;
+    [SerializeField] bool isSellingItems;
     private Dictionary<Vector2, TileControl> TileDict = new Dictionary<Vector2, TileControl>();
     [SerializeField] List<InventoryItemScriptable> itemsInInventory = new List<InventoryItemScriptable>();
+    [SerializeField] List<InventoryItemScriptable> shopInventory = new List<InventoryItemScriptable>();
 
+    //Reference and PlayerClothes
     private PlayerClothingSystem playerClothes;
     private PlayerControl playerControl;
-
 
 
     // Start is called before the first frame update
@@ -62,12 +66,21 @@ public class InventoryGridManager : MonoBehaviour
     public void OpenPlayerInventory(){
         itemsInInventory = playerClothes.ItemsInInventory;
         showPlayerEquipped = true;
+        if(isInShop){
+            isSellingItems = true;
+        }
         LoadInventory(0);
         StartCoroutine(InventoryControl());
     }
 
     public void OpenInventory(List<InventoryItemScriptable> inventoryToDisplay){
-        itemsInInventory = inventoryToDisplay;
+        shopInventory = inventoryToDisplay;
+        OpenInventory();
+    }
+    public void OpenInventory(){
+        itemsInInventory = shopInventory;
+        isInShop = true;
+        isSellingItems = false;
         showPlayerEquipped = false;
         LoadInventory(0);
         StartCoroutine(InventoryControl());
@@ -116,7 +129,7 @@ public class InventoryGridManager : MonoBehaviour
         isInventoryLoaded = true;
     }
 
-    //Menu navigation
+    //Menu navigation for equipping clothes
     IEnumerator InventoryControl(){
         highlightPos = new Vector2(0,0);
         highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
@@ -125,6 +138,7 @@ public class InventoryGridManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.15f);
         while(UIMaster._instance.IsAMenuOpen){
+            //Input of the highlight
             int horizontalInput = 0;
             if(Input.GetAxis("Horizontal") < -0.1f || Input.GetAxis("Horizontal") > 0.1f){
                 horizontalInput = Input.GetAxis("Horizontal") < 0 ? -1 : 1;
@@ -140,61 +154,99 @@ public class InventoryGridManager : MonoBehaviour
                 }
             }
             if(!UIMaster._instance.IsATextBoxOpen){
+                //Move the highlight
                 if(verticalInput != 0 || horizontalInput !=0){
                     highlightPos += new Vector2(verticalInput, horizontalInput);
                     highlight.transform.localPosition = TileDict[highlightPos].transform.localPosition + Vector3.forward;
                     yield return new WaitForSeconds(0.15f);
                 }else{
+                    //Equip, Purchase or Sell Input
                     if(Input.GetKey("z")){
                         InventoryItemScriptable itemToWear = TileDict[highlightPos].Contents;
                         if(itemToWear != null){
-                            if(itemToWear.ClothingType == 0){
-                                playerClothes.SwapShirt(itemToWear);
-                            }
-                            if(itemToWear.ClothingType == 1){
-                                playerClothes.SwapPants(itemToWear);
-                            }
-                            if(itemToWear.ClothingType == 2){
-                                playerClothes.SwapShoes(itemToWear);
+                            if(!isInShop){
+                                if(itemToWear.ClothingType == 0){
+                                    playerClothes.SwapShirt(itemToWear);
+                                }
+                                if(itemToWear.ClothingType == 1){
+                                    playerClothes.SwapPants(itemToWear);
+                                }
+                                if(itemToWear.ClothingType == 2){
+                                    playerClothes.SwapShoes(itemToWear);
+                                }
+                                LoadInventory(0);
+                            }else{
+                                int transactionSucceeded = -1;
+                                if(isSellingItems){
+                                    transactionSucceeded = playerClothes.MakeSale(itemToWear);
+                                }else{
+                                    transactionSucceeded = playerClothes.MakePurchase(itemToWear);
+                                }
+                                if(isSellingItems){
+                                    switch(transactionSucceeded){
+                                    case 0:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,$"You got ${itemToWear.moneyValue}!");
+                                        LoadInventory(0);
+                                    break;
+                                    case 1:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"You can't sell what you're wearing!");
+                                    break;
+                                    case 2:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"You can't sell what you don't own!");
+                                    break;
+                                    default:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"If you're reading this, I screwed up.");
+                                    break;
+                                    }
+                                }else{
+                                    switch(transactionSucceeded){
+                                    case 0:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"Thank you for your purchase!");
+                                    break;
+                                    case 1:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"Looks like you're short on cash!");
+                                    break;
+                                    case 2:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"You already own that!");
+                                    break;
+                                    default:
+                                        UIMaster._instance.ScrollTextOnBox(playerControl,"If you're reading this, I screwed up.");
+                                    break;
+                                    }
+                                }
+                                while(UIMaster._instance.IsATextBoxOpen) yield return new WaitForEndOfFrame();
                             }
                         }
-                        LoadInventory(0);
                         yield return new WaitForSeconds(0.15f);
+                    }else{
+                        //Description Input
+                        if(Input.GetKey("x")){
+                            yield return new WaitForSeconds(0.15f);
+                            InventoryItemScriptable itemToWear = TileDict[highlightPos].Contents;
+                            UIMaster._instance.ScrollTextOnBox(playerControl, itemToWear.itemDescription);
+                            while(UIMaster._instance.IsATextBoxOpen) yield return new WaitForEndOfFrame();
+                            yield return new WaitForSeconds(0.15f);
+                        }
+                        if(Input.GetKey("space")){
+                            if(isInShop){
+                                if(isSellingItems){
+                                    OpenInventory();
+                                }else{
+                                    OpenPlayerInventory();
+                                }
+                                break;
+                            }
+                            yield return new WaitForSeconds(0.15f);
+                        }
                     }
                 } 
             }       
             yield return new WaitForEndOfFrame();
         }
     }
-    /*
-    //Change equiped shirt
-    void SwapShirt(InventoryItemScriptable itemToWear){
-        if(shirtItem != itemToWear){
-            InventoryItemScriptable itemHolder = shirtItem;
-            shirtItem = itemToWear;
-            playerGO.GetComponent<PlayerClothingSystem>().UpdateClothingSprites(this);
-        }
-    }
 
-    //Change equiped pants
-    void SwapPants(InventoryItemScriptable itemToWear){
-        if(pantsItem != itemToWear){
-            InventoryItemScriptable itemHolder = pantsItem;
-            pantsItem = itemToWear;
-            playerGO.GetComponent<PlayerClothingSystem>().UpdateClothingSprites(this);
-        }
-    }
-
-    //Change equiped shoes
-    void SwapShoes(InventoryItemScriptable itemToWear){
-        if(shoesItem != itemToWear){
-            InventoryItemScriptable itemHolder = shoesItem;
-            shoesItem = itemToWear;
-            playerGO.GetComponent<PlayerClothingSystem>().UpdateClothingSprites(this);
-        }
-    }
-    */
     private void OnDisable() {
+        isInShop = false;
         isInventoryLoaded = false;
     }
 }

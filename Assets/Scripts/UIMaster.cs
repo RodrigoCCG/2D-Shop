@@ -21,6 +21,7 @@ public class UIMaster : MonoBehaviour
     //Storage of camera instance
     [SerializeField] GameObject cameraGO;
     [SerializeField] TextMeshProUGUI textBox;
+    [SerializeField] TextMeshProUGUI moneyTextBox;
     [SerializeField] float textLetterDelay = 0.05f;
     [SerializeField] string skipdialogueButton = "x";
     
@@ -38,8 +39,23 @@ public class UIMaster : MonoBehaviour
         dialogueBox.SetActive(false);
     }
 
-    //Start Text scroll routine
+    //Start Text scroll routine, each string in the list being a text box
     public void ScrollTextOnBox(PlayerControl player, List<string> textList){
+        isATextBoxOpen = true;
+        StartCoroutine(ScrollText(player, textList));
+        StartCoroutine(WaitForActions(player));
+    }
+
+    //Start Text scroll routine, automatically spliting a String into many text boxes
+    public void ScrollTextOnBox(PlayerControl player, string textIn){
+        List<string> textList = new List<string>();
+        for(int i = 0; i < textIn.Length; i+=65){
+            int endofString = 95;
+            if(i+endofString >= textIn.Length){
+                endofString = textIn.Length - (i);
+            }
+            textList.Add(textIn.Substring(i,endofString));
+        }
         isATextBoxOpen = true;
         StartCoroutine(ScrollText(player, textList));
         StartCoroutine(WaitForActions(player));

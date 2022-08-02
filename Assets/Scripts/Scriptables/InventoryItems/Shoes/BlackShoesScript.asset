@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 3447237690003988653, guid: 08cccb3b493153f44b142e5f728da882, type: 3}
   clothingType: 2
   moneyValue: 0
-  itemDescription: Black shoes
+  itemDescription:
+  - A Black pair of Shoes

@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 3382916316390249590, guid: 44e4190d7297f7d4c936eb3dd8bc026a, type: 3}
   clothingType: 1
   moneyValue: 0
-  itemDescription: Grey Pants
+  itemDescription:
+  - A Grey Pair of Pants

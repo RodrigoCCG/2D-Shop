@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 5506921788487831056, guid: c85ec0f80d0530f45b848d99d44131fd, type: 3}
   clothingType: 1
   moneyValue: 0
-  itemDescription: Blue pants
+  itemDescription:
+  - A Blue Pair of Pants

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "InventoryItemScriptable", menuName = "2D-Shop/InventoryItemScriptable", order = 0)]
 public class InventoryItemScriptable : ScriptableObject {
@@ -23,5 +25,5 @@ public class InventoryItemScriptable : ScriptableObject {
     public int moneyValue;
 
     //Text description of the item
-    public string itemDescription;
+    public List<string> itemDescription;
 }

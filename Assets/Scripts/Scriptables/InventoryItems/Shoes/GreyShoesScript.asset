@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 8794341149589032070, guid: 1bd9bf830df8f144eb66050153378cfe, type: 3}
   clothingType: 2
   moneyValue: 0
-  itemDescription: Grey Shoes
+  itemDescription:
+  - A Grey pair of Shoes
