@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
   m_Name: RedShirtScript
   m_EditorClassIdentifier: 
-  InventorySprite: {fileID: 2239318950143504231, guid: c21e5254201049349b02de65000b4cc1, type: 3}
-  WorldObject: {fileID: 7630424833477793838, guid: 06ab869e7ff15244dab01cd4cfc11391, type: 3}
+  InventorySprite: {fileID: 3705991517931280060, guid: c21e5254201049349b02de65000b4cc1, type: 3}
+  WorldObject: {fileID: 1620158173843922950, guid: 06ab869e7ff15244dab01cd4cfc11391, type: 3}
   clothingType: 0
-  moneyValue: 0
-  itemDescription:
-  - A Red Shirt
+  moneyValue: 5
+  itemDescription: []

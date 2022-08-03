@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: BrownFShoesScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 4813448492616057952, guid: b46a9d62e63c74e44abd6d091de6627f, type: 3}
+  WorldObject: {fileID: 4459114314862949468, guid: 4da1de4328dc2d34eb3f6d515c26ec54, type: 3}
+  clothingType: 2
+  moneyValue: 15
+  itemDescription: []

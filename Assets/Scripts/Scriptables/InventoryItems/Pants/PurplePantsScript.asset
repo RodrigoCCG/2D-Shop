@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: PurplePantsScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 535617990108429742, guid: 8f41f6a1383a6c54da790327d28ad8cc, type: 3}
+  WorldObject: {fileID: 6134601276161041448, guid: 0825c6286399c744a90a31edf479f5b4, type: 3}
+  clothingType: 1
+  moneyValue: 5
+  itemDescription: []

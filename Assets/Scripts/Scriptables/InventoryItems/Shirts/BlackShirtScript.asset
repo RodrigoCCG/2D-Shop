@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
   m_Name: BlackShirtScript
   m_EditorClassIdentifier: 
-  InventorySprite: {fileID: 565009786877109105, guid: ba603699bcdd5394588e2600a672fd25, type: 3}
-  WorldObject: {fileID: 8113170001963879816, guid: 4cdbb7b203e14a249a7d46cc042b8399, type: 3}
+  InventorySprite: {fileID: 7720390374502164057, guid: ba603699bcdd5394588e2600a672fd25, type: 3}
+  WorldObject: {fileID: 5716753255171271655, guid: 4cdbb7b203e14a249a7d46cc042b8399, type: 3}
   clothingType: 0
-  moneyValue: 10
-  itemDescription:
-  - A Black Shirt
+  moneyValue: 5
+  itemDescription: []

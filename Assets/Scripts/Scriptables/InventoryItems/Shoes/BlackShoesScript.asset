@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: BlackShoesScript
   m_EditorClassIdentifier: 
   InventorySprite: {fileID: 4907373327837967287, guid: b004a1d09e3b26a44b44fedc70cc8fdf, type: 3}
-  WorldObject: {fileID: 3447237690003988653, guid: 08cccb3b493153f44b142e5f728da882, type: 3}
+  WorldObject: {fileID: 6312252342484830297, guid: 08cccb3b493153f44b142e5f728da882, type: 3}
   clothingType: 2
-  moneyValue: 0
-  itemDescription:
-  - A Black pair of Shoes
+  moneyValue: 10
+  itemDescription: []

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerClothingSystem : MonoBehaviour
 {
@@ -28,7 +29,13 @@ public class PlayerClothingSystem : MonoBehaviour
     
     [SerializeField] int playerMoney = 0;
     public int PlayerMoney{get{return playerMoney;}}
+
+    [SerializeField] TextMeshProUGUI moneyDisplay;
     
+    void Start(){
+        moneyDisplay.text = $"${playerMoney}";
+    }
+
     //Update clothing Sprites
     public void UpdateClothingSprites()
     {
@@ -66,11 +73,13 @@ public class PlayerClothingSystem : MonoBehaviour
 
     public int GainMoney(int moneyGained){
         playerMoney += moneyGained;
+        moneyDisplay.text = $"${playerMoney}";
         return playerMoney;
     }
 
     public int LoseMoney(int moneyLost){
         playerMoney -= moneyLost;
+        moneyDisplay.text = $"${playerMoney}";
         return playerMoney;
     }
 

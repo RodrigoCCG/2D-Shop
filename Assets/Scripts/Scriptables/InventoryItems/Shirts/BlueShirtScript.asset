@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: BlueShirtScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 7658968746945933954, guid: bc5f5d074deb7154680204eda1cffea9, type: 3}
+  WorldObject: {fileID: 4333535406824715063, guid: 0552dfb7b5bed9741b15a14de8397b21, type: 3}
+  clothingType: 0
+  moneyValue: 5
+  itemDescription: []

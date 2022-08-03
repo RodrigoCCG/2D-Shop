@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: BlueShoesScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 4033562219715603389, guid: 49cbce65e4e40d84e8b74a2e0252da3f, type: 3}
+  WorldObject: {fileID: 5173473667642423206, guid: 0643a8d02dc74974e855dfbcb852e6b7, type: 3}
+  clothingType: 2
+  moneyValue: 10
+  itemDescription: []

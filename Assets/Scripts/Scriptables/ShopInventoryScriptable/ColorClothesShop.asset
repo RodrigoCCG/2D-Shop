@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee867c0f194520b4c97d377d98fd5746, type: 3}
+  m_Name: ColorClothesShop
+  m_EditorClassIdentifier: 
+  shopInventoryItems:
+  - {fileID: 11400000, guid: 221dd85178d91724c82516c04343410e, type: 2}
+  - {fileID: 11400000, guid: f1b143f9b6e023742ac0cc133bd51d4a, type: 2}
+  - {fileID: 11400000, guid: 97bf33a88c11df14da7e2f0ab29e3b1d, type: 2}
+  - {fileID: 11400000, guid: e95925f9e9bff2547a0d2a7058abfa85, type: 2}
+  - {fileID: 11400000, guid: d087f68373aef0845ade6f7527fb18bb, type: 2}
+  - {fileID: 11400000, guid: 06b4d711ee1def0448df63d42dfe9f65, type: 2}
+  - {fileID: 11400000, guid: e749bb4be8640ea468bb6ae317befcc8, type: 2}
+  - {fileID: 11400000, guid: 340217f4e6c248f45a61c951ac052382, type: 2}
+  - {fileID: 11400000, guid: 3cdf8202d32e7da478856c95e9719186, type: 2}
+  - {fileID: 11400000, guid: 52fa62f850eb9f34782ac692fc5b6ce2, type: 2}
+  - {fileID: 11400000, guid: 77ddf84f21b325b4dbbd8fccd5d4f064, type: 2}
+  - {fileID: 11400000, guid: 3d8c922e91a45454a9f1b12d96d6e0fc, type: 2}
+  - {fileID: 11400000, guid: 2e5f2078a25f3cb45a91569bf9958e3e, type: 2}
+  - {fileID: 11400000, guid: b1faea6241fed9c4bb8d247418d54280, type: 2}
+  - {fileID: 11400000, guid: 57e2f5c4280c29c4f8ce8a8f29de418c, type: 2}

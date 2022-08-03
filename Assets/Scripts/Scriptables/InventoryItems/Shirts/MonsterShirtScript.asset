@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
+  m_Name: MonsterShirtScript
+  m_EditorClassIdentifier: 
+  InventorySprite: {fileID: 4926355204226948230, guid: da06b56926f68a349b5a4799852c67c3, type: 3}
+  WorldObject: {fileID: 9137860971668891229, guid: 3e6d28ac0c8bd2e4f8880b357df72163, type: 3}
+  clothingType: 0
+  moneyValue: 10
+  itemDescription: []

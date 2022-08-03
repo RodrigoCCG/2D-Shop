@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff46e412b6a899468637d61fd2f61a5, type: 3}
   m_Name: BlackPantsScript
   m_EditorClassIdentifier: 
-  InventorySprite: {fileID: 2341270964415023360, guid: 0c9d6378ed99f6246b05825f12efce46, type: 3}
-  WorldObject: {fileID: 9100234267394150888, guid: 94254383259d48f4aa034d322a2d60a9, type: 3}
+  InventorySprite: {fileID: 7297145477941534825, guid: f25ef0a20de3cf24f98e4576451ffd19, type: 3}
+  WorldObject: {fileID: 5226974535712116756, guid: 94254383259d48f4aa034d322a2d60a9, type: 3}
   clothingType: 1
-  moneyValue: 0
-  itemDescription:
-  - A Black Pair of Pants
+  moneyValue: 5
+  itemDescription: []

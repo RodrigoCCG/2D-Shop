@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: BluePantsScript
   m_EditorClassIdentifier: 
   InventorySprite: {fileID: 2095542644769424897, guid: dbb9a25607d40994788e87a7df004fcb, type: 3}
-  WorldObject: {fileID: 5506921788487831056, guid: c85ec0f80d0530f45b848d99d44131fd, type: 3}
+  WorldObject: {fileID: 3565443300522224479, guid: c85ec0f80d0530f45b848d99d44131fd, type: 3}
   clothingType: 1
-  moneyValue: 0
-  itemDescription:
-  - A Blue Pair of Pants
+  moneyValue: 5
+  itemDescription: []
