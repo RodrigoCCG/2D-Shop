@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 9137860971668891229, guid: 3e6d28ac0c8bd2e4f8880b357df72163, type: 3}
   clothingType: 0
   moneyValue: 10
-  itemDescription: []
+  itemDescription:
+  - 'A T-Shirt with a picture of a Monster. Cost: $10'

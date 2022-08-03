@@ -14,6 +14,13 @@ public class CameraBehavior : MonoBehaviour
         CameraOffset = Vector3.back * 10;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown("escape")){
+            Application.Quit();
+        }
+    }
+    
     // Update is called once per frame
     void LateUpdate()
     {

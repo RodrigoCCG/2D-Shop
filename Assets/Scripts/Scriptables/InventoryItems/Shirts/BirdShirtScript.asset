@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 8915662840311510046, guid: 2b85220473bf46c4a99e25ddd11b3498, type: 3}
   clothingType: 0
   moneyValue: 10
-  itemDescription: []
+  itemDescription:
+  - 'A shirt in the image of a Bird. Cost: $10'

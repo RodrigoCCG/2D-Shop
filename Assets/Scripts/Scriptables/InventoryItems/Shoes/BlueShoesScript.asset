@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 5173473667642423206, guid: 0643a8d02dc74974e855dfbcb852e6b7, type: 3}
   clothingType: 2
   moneyValue: 10
-  itemDescription: []
+  itemDescription:
+  - 'Blue Tenis Shoes. Cost: $10'

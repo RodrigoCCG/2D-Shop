@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 3927339949925814353, guid: 7847fe851caa64f408913866c3f6ca80, type: 3}
   clothingType: 2
   moneyValue: 15
-  itemDescription: []
+  itemDescription:
+  - 'Formal Black Shoes. Cost: $15'

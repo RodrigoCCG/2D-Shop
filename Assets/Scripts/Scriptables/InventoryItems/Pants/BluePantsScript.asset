@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 3565443300522224479, guid: c85ec0f80d0530f45b848d99d44131fd, type: 3}
   clothingType: 1
   moneyValue: 5
-  itemDescription: []
+  itemDescription:
+  - 'Blue Pants. Cost: $5'

@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 6272841782052595758, guid: 7f22778f958bcc84e9d4533efde58051, type: 3}
   clothingType: 0
   moneyValue: 20
-  itemDescription: []
+  itemDescription:
+  - 'A Purple Shirt with a White UnderShirt. Cost: $20'

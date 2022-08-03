@@ -16,4 +16,5 @@ MonoBehaviour:
   WorldObject: {fileID: 2010198709934784165, guid: 4119cbf9fba196b4ca46adc3289a30e8, type: 3}
   clothingType: 0
   moneyValue: 15
-  itemDescription: []
+  itemDescription:
+  - 'A Purple Button Up Shirt. Cost: $15'
