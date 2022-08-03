@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7de74e319d8c814b9357a0eebf2c1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableText: {fileID: 11400000, guid: 03df71b5ff009254c8a149bcf3f71c3d, type: 2}
+  interactableText: {fileID: 11400000, guid: 599f1b1a8e1880d478dde085bd302adc, type: 2}
 --- !u!1 &255771647
 GameObject:
   m_ObjectHideFlags: 0

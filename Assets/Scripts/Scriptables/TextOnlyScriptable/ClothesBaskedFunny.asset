@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0878d55a35677f44bf51967c0c492b8, type: 3}
   m_Name: ClothesBaskedFunny
   m_EditorClassIdentifier: 
-  textList: []
+  textList:
+  - A basket full of clothes.
+  - ...?
+  - There is a small white dog in the basket. It's holding a Red Orb.
+  - You decide to leave it alone.
